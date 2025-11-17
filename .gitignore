@@ -1,0 +1,8 @@
+# Entornos
+venv
+
+# Variables de entorno
+kaggle_keys.json
+
+# Datos sucios irrelevantes
+data/~$Restaurant_Data.xlsx

@@ -1,0 +1,4 @@
+kaggle
+ipykernel
+requests
+pandas
