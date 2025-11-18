@@ -2,3 +2,9 @@ kaggle
 ipykernel
 requests
 pandas
+openpyxl
+subprocess
+tabula-py
+jpype
+matplotlib
+seaborn

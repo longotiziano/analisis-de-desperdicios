@@ -3,6 +3,12 @@ Este directorio contiene los datasets utilizados en el proyecto, así como la do
 
 ---
 
+### Directorios
+- **raw/**: Posee los datos crudos, sin ningún tipo de proceso.
+- **staging/**: Almacena los datos de manera previa en formato CSV luego de pasar por el EDA
+- **clean/**: Contiene los datos procesados, listos para análisis.
+ 
+
 ## Datasets empleados
 
 ### **1. Índice de Precios al Consumidor (IPC - INDEC)**
@@ -31,7 +37,7 @@ API: https://dolarapi.com/v1/dolares/blue
 
 ---
 
-## 🔍 Investigación complementaria
+## Investigación complementaria
 
 - Declaraciones del CEO de PedidosYa sobre la gestión de stock en dark stores (Fuente: Forbes)
 - Estudio sobre desperdicio de alimentos en hoteles y restaurantes de Santa Fe (Fuente: Repositorio UNLP)

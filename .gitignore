@@ -5,4 +5,9 @@ venv
 kaggle_keys.json
 
 # Datos sucios irrelevantes
-data/~$Restaurant_Data.xlsx
+data/raw/~$Restaurant_Data.xlsx
+data/raw/restaurant-cost-and-sales-dataset.zip
+
+# Python
+__pycache__/
+**/__pycache__/
