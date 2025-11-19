@@ -9,3 +9,4 @@ jpype
 matplotlib
 seaborn
 unidecode
+deep-translator

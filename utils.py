@@ -2,6 +2,7 @@ import requests
 import pandas as pd
 import unidecode
 from typing import Any, Tuple
+import warnings
 
 requests_headers = {
     "User-Agent": (
@@ -35,62 +36,72 @@ def realizar_request(url: str) -> Tuple[bool, Any | None]:
     return True, data
 
 
-def transformar_unidades(df: pd.DataFrame) -> Tuple[bool, pd.DataFrame | None]:
+def transformar_unidades(df: pd.DataFrame) -> pd.DataFrame:
     """
-    Función creada para, luego de recibir un DataFrame, crear uno nuevo con precios y unidades de medida modificados en base a un kilo.
+    Normaliza precios a precio por kilogramo.
+    Acepta unidades como 'kg', 'g', 'litro', 'litros', '200_g', '500_g', 'lata_200_g' etc.
+    Devuelve:
+        - df_out (DataFrame): DataFrame transformado.
     """
+
     lista_de_dicts = []
     avisos = []
+
     for fila in df.itertuples():
-        col_udm = fila.unidad_de_medida
+        variedad = fila.variedad
+        precio = fila.precio
+        udm = fila.unidad_de_medida
 
-        if isinstance(col_udm, str):
-            # Evitar filas que no requieren de actualización
-            if col_udm != 'kg':
-                col_udm = col_udm.replace('cc', 'g')
-                col_udm = col_udm.replace('litros', 'kg')
+        # Normalizo strings base
+        if isinstance(udm, str):
+            udm = udm.replace("cc", "g")
+            udm = udm.replace("litros", "kg")
+            udm = udm.replace("litro", "kg")
 
-                # En el caso de que sea "litro" singular
-                if col_udm == 'litro':
-                    col_udm = col_udm.replace('litro', 'kg')
-                    cantidad = 1
+        # Caso base: si ya está en kg
+        if udm == "kg":
+            lista_de_dicts.append({
+                "variedad": variedad,
+                "unidad_de_medida": "kg",
+                "precio": precio
+            })
+            continue
 
-                division = col_udm.split("_")
+        # Intento parsear casos tipo "200_g" o "0.5_kg"
+        partes = udm.split("_")
 
-                # No aplico la función a elementos que no sean ni gramos ni kilos, evitando malas operaciones en (por ejemplo) unidades
-                if division[-1] not in ['kg', 'g']:
-                    avisos.append({'Valor no actualizado': fila.variedad})
-                    dict_variedad = {'variedad': fila.variedad, 'unidad_de_medida': col_udm, 'precio': fila.precio }
-                    lista_de_dicts.append(dict_variedad)
-                    continue
+        if len(partes) == 2:
+            cantidad_str, unidad = partes
+        elif len(partes) == 3: # En caso de, por ejemplo: lata_200_g
+            _, cantidad_str, unidad = partes
+        else:
+            avisos.append((variedad, udm, "Formato desconocido"))
+        try:
+            cantidad = float(cantidad_str)
+        except:
+            avisos.append((variedad, udm, "No pude leer la cantidad"))
+            continue
 
-                # Uso cantidad de operadores lógicos luego del razonamiento de como afrontar el orden en este bloque de código y teniendo
-                # en cuenta diversos aspectos del DataFrame que limitan el uso de aplicaciones más simples con, por ejemplo, index().
-                if len(division) > 2:
-                    cantidad = float(division[1])
-                elif len(division) == 2:
-                    cantidad = float(division[0])
-                else:
-                    avisos.append({'Longitud de lista': fila.variedad})
-                    continue
-                
-                if division[-1] == 'g':
-                    # Reemplazo la variable "cantidad" en el caso de que se trate de gramos
-                    cantidad = cantidad/1000 
+        if unidad == "g":
+            cantidad = cantidad / 1000  # paso a kg
+        elif unidad != "kg":
+            avisos.append((variedad, udm, "Unidad desconocida"))
+            continue
 
-                precio_kg = fila.precio / cantidad
+        precio_kg = precio / cantidad
 
-                dict_variedad = {'variedad': fila.variedad, 'unidad_de_medida': 'kg', 'precio': precio_kg }
-                lista_de_dicts.append(dict_variedad)
+        lista_de_dicts.append({
+            "variedad": variedad,
+            "unidad_de_medida": "kg",
+            "precio": precio_kg
+        })
 
-            else:
-                dict_variedad = {'variedad': fila.variedad, 'unidad_de_medida': col_udm, 'precio': fila.precio }
-                lista_de_dicts.append(dict_variedad)
 
+
+    # Avisos sin cortar ejecución
     if avisos:
-        print(avisos)
-        return False, None
-        
+        warnings.warn(f"Valores no reconocidos en transformar_unidades: {avisos}")
+
     return pd.DataFrame(lista_de_dicts)
 
 
@@ -105,3 +116,37 @@ def pasar_snake_case(celda: str) -> str:
             celda = celda.replace(".", "").replace(",", ".")   
     
     return celda.lower().replace(" ", "_")
+
+
+def aplicar_funcion_df(df: pd.DataFrame, cols: pd.Series, func):
+    """
+    Aplica una función a columnas específicas de un DataFrame.
+    """
+    for col in cols:
+        df[col] = df[col].map(func)
+        
+
+def traductor_cols(texto: str) -> str:
+    """
+    Dada una de las columnas de los DataFrames empleados, se retorna su traducción al español,
+    con pasado a snake_case y sin tildes.
+    - DataFrame Items: Item,Category,Sub Category,Item Name,Price,Cost
+    - DataFrame Orders: Date,Time,Order Number,Item,Count
+    """
+    traducciones_fijas = {
+    "Item": "item",
+    "Category": "categoria",
+    "Sub Category": "subcategoria",
+    "Item Name": "nombre_producto",
+    "Price": "precio",
+    "Cost": "costo_produccion",
+    "Date": "fecha_orden",
+    "Time": "hora",
+    "Order Number": "numero_de_orden",
+    "Count": "cantidad"
+    }   
+    if texto not in traducciones_fijas:
+        raise KeyError(f"No existe traducción para la columna: {texto}")
+    
+    traduccion = traducciones_fijas[texto]
+    return traduccion
