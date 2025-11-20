@@ -22,7 +22,22 @@ Fuente: https://www.indec.gob.ar/indec/web/Nivel4-Tema-3-5-31
 
 ### **2. Restaurant Cost and Sales Dataset (Kaggle)**  
 Dataset base utilizado para simular ventas y costos en un restaurante promedio.  
-Contiene dos hojas (`Orders` e `Items`) con precios originalmente expresados en **USD**, lo cual se ajustó usando tipo de cambio actualizado.
+Un `.xlsx` que contiene dos hojas (`Orders` e `Items`) con precios originalmente expresados en **USD**, lo cual se ajustó usando tipo de cambio actualizado.
+
+**Hoja: Orders**
+- `Date`: día de la transacción  
+- `Time`: Horario de la transacción
+- `Order Number`: Número de orden  
+- `Item`: PK del item  
+- `Count`: Cantidad vendida
+
+**Hoja: Items**
+- `Item`: PK del item   
+- `Category`: Categoría del item (Desserts, Sides, Main Courses...)
+- `Sub Category`: Sub-categoría del item (Pasta, Vegan...)
+- `Item Name`: Nombre del item (Coffe, Beer, Burguers...) 
+- `Price`: Costo del item (en dólares)
+- `Cost`: Costo de producción
 
 Fuente: https://www.kaggle.com/datasets/virtualschool/restaurant-cost-and-sales-dataset
 
