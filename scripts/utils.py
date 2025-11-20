@@ -118,13 +118,33 @@ def pasar_snake_case(celda: str) -> str:
     return celda.lower().replace(" ", "_")
 
 
-def aplicar_funcion_df(df: pd.DataFrame, cols: pd.Series, func):
+def aplicar_funcion_df(df: pd.DataFrame, cols: list, func):
     """
     Aplica una función a columnas específicas de un DataFrame.
     """
     for col in cols:
         df[col] = df[col].map(func)
         
+
+def detectar_outliers_iqr(df: pd.DataFrame, col: str) -> pd.DataFrame:
+    """
+    Detecta outliers en una columna usando el método IQR (Tukey).
+    Devuelve un DataFrame que contiene solo las filas con valores atípicos.
+    """
+    # Devuelve el valor debajo del cual cae un porcentaje específico de los datos.
+    Q1 = df[col].quantile(0.25) # percentil 0.25
+    Q3 = df[col].quantile(0.75) # percentil 0.75
+    
+    # Interquartile Range (rango donde se encuentran el 50% de los datos centrales)
+    IQR = Q3 - Q1
+    
+    # Por regla de Tukey
+    lim_inf = Q1 - 1.5 * IQR
+    lim_sup = Q3 + 1.5 * IQR
+    
+    outliers = df[(df[col] < lim_inf) | (df[col] > lim_sup)]
+    return outliers
+
 
 def traductor_cols(texto: str) -> str:
     """

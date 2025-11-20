@@ -1,0 +1,69 @@
+Item,Category,Sub Category,Item Name,Price,Cost
+100,Aperitivos,sopas,Sopa de tomate,0,0.0
+101,Aperitivos,sopas,sopa de pollo,15,13.05
+102,Aperitivos,Ensaladas,Ensalada De La Huerta,17,13.94
+103,Aperitivos,Ensaladas,Ensalada Cesar,16,13.76
+104,Aperitivos,Platos de aperitivo,Rollitos de primavera,16,13.28
+105,Aperitivos,Platos de aperitivo,Samosas,20,18.0
+106,Aperitivos,Platos de aperitivo,Bruschetta,15,12.15
+107,Aperitivos,Mariscos,Coctel De Camarones,15,12.15
+108,Aperitivos,Mariscos,Anillos de Calamares,12,9.84
+109,Aperitivos,Mariscos,Brochetas De Mariscos,16,13.92
+200,Platos Principales,Platos De Carne,filetes,176,144.32
+201,Platos Principales,Platos De Carne,hamburguesas,197,157.6
+202,Platos Principales,Platos De Carne,Chuletas De Cerdo,162,136.08
+203,Platos Principales,Platos De Carne,Chuletas De Cordero,184,161.92
+204,Platos Principales,Aves de corral,Pechuga de pollo,198,174.24
+205,Platos Principales,Aves de corral,Pato asado,109,87.2
+206,Platos Principales,Aves de corral,Platos De Pavo,181,146.61
+207,Platos Principales,Mariscos,Pescado asado,123,105.78
+208,Platos Principales,Mariscos,Pescado Frito,161,133.63
+209,Platos Principales,Mariscos,Pastas con Mariscos,144,119.52
+210,Platos Principales,Mariscos,Rollos de sushi,128,115.2
+211,Platos Principales,Pastas,Espaguetis,191,158.53
+212,Platos Principales,Pastas,fetuccini,146,119.72
+213,Platos Principales,Pastas,lasaña,151,123.82
+214,Platos Principales,Pastas,Ravioles,140,113.4
+215,Platos Principales,vegano,Salteado De Verduras,174,146.16
+216,Platos Principales,vegano,Platos de tofu,144,115.2
+217,Platos Principales,vegano,Pasta Vegetariana,118,103.84
+218,Platos Principales,vegano,Ensaladas,194,168.78
+301,Lados,Papas,Puré de papas,26,21.32
+302,Lados,Papas,Papas fritas,41,36.9
+303,Lados,Papas,Patatas Asadas,36,32.04
+304,Lados,Papas,Gajos de papa,31,25.42
+305,Lados,Verduras,Verduras al vapor,42,34.02
+306,Lados,Verduras,Verduras Asadas,49,39.69
+307,Lados,Verduras,Mezcla de vegetales mixtos,30,25.5
+308,Lados,Arroz,Arroz Sencillo,34,27.2
+309,Lados,Arroz,Arroz Frito,20,17.0
+310,Lados,Arroz,pilaf,28,24.08
+311,Lados,Pan,Pan de ajo,28,23.8
+312,Lados,Pan,Rollitos de cena,46,40.48
+313,Lados,Pan,pan naan,44,37.4
+401,Postres,Tortas,Pastel de chocolate,44,39.6
+402,Postres,Tortas,Tarta de queso,49,41.65
+403,Postres,Tortas,Pastel De Zanahoria,43,34.4
+404,Postres,Tortas,Tiramisú,60,48.0
+405,Postres,Helado,Varios sabores con toppings,51,43.35
+406,Postres,tartas,Tarta de manzana,57,49.02
+407,Postres,tartas,pastel de cereza,48,42.24
+408,Postres,tartas,Pastel de lima,57,48.45
+409,Postres,pudines,pudín de chocolate,38,30.78
+410,Postres,pudines,Arroz con Leche,50,45.0
+411,Postres,pudines,Natilla,58,49.3
+412,Postres,frutas,Ensalada de fruta,63,56.7
+413,Postres,frutas,Frutas Rebanadas,43,35.69
+414,Postres,frutas,Plato de frutas,31,26.35
+501,Bebidas,Bebidas no alcohólicas,Agua,8,7.12
+502,Bebidas,Bebidas no alcohólicas,Soda,8,6.8
+503,Bebidas,Bebidas no alcohólicas,Jugo,16,13.92
+504,Bebidas,Bebidas no alcohólicas,Limonada,8,6.56
+505,Bebidas,Bebidas no alcohólicas,Té helado,9,7.38
+506,Bebidas,Bebidas no alcohólicas,Café,6,5.4
+507,Bebidas,Bebidas Alcohólicas,Cerveza,8,6.88
+508,Bebidas,Bebidas Alcohólicas,Vino,10,8.0
+509,Bebidas,Bebidas Alcohólicas,Cócteles,10,8.8
+510,Bebidas,Bebidas Alcohólicas,Whisky,17,14.62
+511,Bebidas,Bebidas Alcohólicas,Vodka,5,4.45
+512,Bebidas,Bebidas Alcohólicas,Licores,10,8.6

@@ -57,4 +57,16 @@ Además del dataset principal, se analizaron:
 
 --- 
 
-### Limpieza de datos
+### Data Wrangling
+Luego de haber identificado en el **Exploratory Data Analysis** (EDA) las tareas encomendadas, se realizaron diversas tareas:
+- Eliminación de valores nulos
+- Traducción de DataFrames
+- Formateo a `snake_case`
+- Pasado a unidades en común (ej: precio en g -> precio en kg)
+- Conversión de tipo de cambio
+- Identificación de outliers (ya que previamente los datasets estaban sucios)
+- Agregado de métricas y cálculos que dejan listos los datos para ser graficados
+
+> **Aclaración sobre la traducción del dataset**
+>
+> La traducción del dataset fue ejecutada con la librería `deep_translator`, y si bien es la más estable, suelen demorar mucho sus procesos. Esto era grave, ya que relentizaba todo el notebook por una simple traducción de ~200 celdas, por lo que decidí manejarla de manera externa con el script `traducir_df.py`, que traduce externamente y almacena en un CSV, aumentando así de manera drástica la velocidad del código. 
