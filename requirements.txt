@@ -1,13 +1,5 @@
-kaggle
-ipykernel
-requests
 pandas
-openpyxl
-subprocess
-tabula-py
 jpype
 matplotlib
 seaborn
-unidecode
-deep-translator
 json
