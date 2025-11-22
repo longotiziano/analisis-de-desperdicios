@@ -130,6 +130,9 @@ pip install -r requirements.txt
 
 Los notebooks dentro de `/notebooks` generan los datasets limpios que luego consumen las branches.
 
+> **Importante:** Luego de ejecutar el primer notebook (EDA), si no se desea utilizar el archivo `items_traducido.csv` generado previamente y se prefiere crear uno nuevo ejecutando `traducir_df.py`, es necesario tener especial cuidado con posibles errores de traducción.  
+> Esto puede ocurrir por limitaciones del traductor automático.
+
 ### 3. Cambiar de branchs según análisis
 ```bash
 git checkout desperdicios-optimizacion
