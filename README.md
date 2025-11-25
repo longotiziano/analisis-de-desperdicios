@@ -1,14 +1,4 @@
-# Análisis de Desperdicios
-
-En este repositorio realizo un análisis e investigación con respecto al impacto que podría tener la optimización de fugas y desperdicios dentro de los restaurantes y sectores gastronómicos, centrándome en precios de **mayoristas argentinos**.
-
----
-
-## Contexto del Proyecto
-
-Este análisis surge de una necesidad real: evaluar la viabilidad económica de implementar un sistema propio diseñado para reducir fugas y desperdicios en restaurantes.
-La intención original era validar si dicha herramienta podía ofrecer un beneficio lo suficientemente significativo como para comercializarla a un cliente del sector gastronómico.
-a# Waste Analysis Project
+# Waste Analysis Project
 
 In this repository, I carry out an analysis and investigation regarding the impact that optimizing leaks and waste could have within restaurants and gastronomic businesses, focusing on prices from **Argentine wholesalers**.
 
