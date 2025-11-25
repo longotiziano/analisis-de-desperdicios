@@ -1,66 +1,69 @@
-# Documentación de equivalencias
-### _Estrategia para unificar categorías entre el restaurante y el INDEC_
+# Equivalences Documentation
+### _Strategy for Unifying Categories Between the Restaurant Dataset and INDEC_
 
-Este documento explica el proceso utilizado para mapear las categorías del restaurante con las materias primas del informe del INDEC, con el fin de estimar costos reales del mercado argentino y realizar un análisis económico consistente.
-
---- 
-
-###  Problema a resolver
-Ambos utilizan estructuras completamente diferentes, lo que hacía imposible calcular costos reales sin un sistema de correspondencia entre ambos esquemas. 
-
-**Por ejemplo**: mientras que en el dataset del restaurante había categorías culinarias, en el INDEC se encontraban materias primas individuales
+This document explains the process used to map the restaurant’s categories to the raw materials listed in the INDEC report, in order to estimate real market costs in Argentina and perform a consistent economic analysis.
 
 ---
 
-### Objetivo del sistema de equivalencias
-- Permitir estimar costos reales de producción usando precios del INDEC.
-- Conectar platos con materias primas, aun cuando no existan coincidencias exactas.
-- Mantener consistencia, escalabilidad y flexibilidad dentro del pipeline de análisis.
+### Problem to Solve
+Both sources use completely different classification structures, which made it impossible to calculate real costs without a correspondence system between the two schemas.
+
+**For example:**  
+While the restaurant dataset uses culinary categories, the INDEC report lists individual raw materials.
 
 ---
 
-### Metodología y supuestos
-- Se asumió una estructura promedio de recetas tal que la suma de sus valores es igual a 5.
-- Reviso sub-categorías de platos (las categorías sin indiferentes porque refiere a la carta, no al plato en sí)
-- Los pesos no representan cantidades exactas
-- Se privilegió la consistencia
+### Objective of the Equivalences System
+- Enable real production cost estimation using INDEC prices.  
+- Connect dishes to raw materials even when exact matches do not exist.  
+- Maintain consistency, scalability, and flexibility within the analysis pipeline.
 
-**Ejemplo**:
+---
+
+### Methodology and Assumptions
+- A standard recipe structure was assumed such that the sum of its assigned values equals 5.  
+- Subcategories of dishes were reviewed (main categories were irrelevant because they refer to the menu, not the dish itself).  
+- The assigned weights do not represent exact quantities.  
+- Consistency was prioritized above granularity.
+
+**Example:**
 ```python
 {
-    'hamburguesas': {
-        'carnes': 3,
-        'panificados': 2, # Cada diccionario suma 5 puntos
-        'verduras': 1
+    'hamburgers': {
+        'meats': 3,
+        'bakery': 2,   # Each dictionary sums to 5 points
+        'vegetables': 1
     },
-    'ensaladas': {
-        'verduras': 4
-        'aceites': 1
+    'salads': {
+        'vegetables': 4,
+        'oils': 1
     }
     # etc...
 }
 ```
 ---
 
-### Beneficios del enfoque
-- Reduce la probabilidad de errores por falta de coincidencias exactas.
-- Permite usar precios reales sin necesidad de replicar recetas individuales.
-- Mantiene consistencia entre datasets muy diferentes.
-- Hace el proyecto más escalable y realista.
+### Benefits of This Approach
+
+- Reduces the likelihood of errors due to missing exact matches.
+- Allows the use of real prices without replicating every individual recipe.
+- Maintains consistency across very different datasets.
+- Makes the project more scalable and realistic.
 
 ---
 
-### Limitaciones conocidas
-- Se pierde algo de granularidad a nivel producto final.
-- Algunas recetas podrían tener composiciones diferentes según el restaurante.
-- Los costos estimados representan un promedio de mercado, no una receta específica.
+### Known Limitations
 
-Aun así, este método es adecuado para un análisis económico general, comparaciones temporales y estimación del impacto del desperdicio dentro de un restaurante promedio.
+- Some product-level granularity is lost.
+- Recipes can vary significantly between restaurants.
+- Estimated costs represent a market average rather than exact formulations.
+
+Even so, this method is suitable for general economic analysis, temporal comparisons, and estimating the financial impact of waste in a typical restaurant.
 
 ---
 
-### Archivos
-Los archivos contenidos en el directorio cumplen diversas responsabilidades:
-- `categorias_indec.py`: Contiene el diccionario que le asigna al dataset del INDEC sus categorías
-- `equivalencias_pesos.py`: Diccionario que asigna las subcategorías del dataset de `Items` una cantidad numérica de las categorías del INDEC
+### Files
 
+The files contained in this directory serve specific roles:
+- `categorias_indec.py`: Contains the dictionary that assigns categories to the INDEC dataset.
+- `equivalencias_pesos.py`: Dictionary that maps subcategories from the Items dataset to numerical weights of INDEC categories.

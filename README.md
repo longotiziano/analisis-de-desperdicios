@@ -8,148 +8,156 @@ En este repositorio realizo un análisis e investigación con respecto al impact
 
 Este análisis surge de una necesidad real: evaluar la viabilidad económica de implementar un sistema propio diseñado para reducir fugas y desperdicios en restaurantes.
 La intención original era validar si dicha herramienta podía ofrecer un beneficio lo suficientemente significativo como para comercializarla a un cliente del sector gastronómico.
+a# Waste Analysis Project
 
-El proyecto, por lo tanto, no utiliza datos simulados por conveniencia, sino que responde a una pregunta de negocio concreta:
-**¿Conviene invertir en un sistema de control de desperdicios en el contexto económico argentino actual?**
-
----
-
-## Objetivo:
-
-Analizar el rendimiento del restaurante, fugas probables, costos y colaborar en la decisión de implementar un sistema que permita un mejor control de la materia prima empleada.
-
-Incluye:
-- Identificación de pérdidas 
-- Impacto económico
-- Proyección de ahorro tras la optimización
-- KPIs y métricas de negocio
-- Decisión final y conclusión de implementación sistemática
-- Dashboard final
+In this repository, I carry out an analysis and investigation regarding the impact that optimizing leaks and waste could have within restaurants and gastronomic businesses, focusing on prices from **Argentine wholesalers**.
 
 ---
 
-## Estructura del proyecto
+## Project Context
+
+This analysis originated from a real business need: assessing the economic viability of implementing a custom system designed to reduce waste and leaks in restaurants.  
+The initial intent was to validate whether such a tool could generate a significant enough benefit to be commercially offered to a client in the gastronomy sector.
+
+Therefore, the project does not rely on random or convenient simulated data. Instead, it answers a concrete business question:
+
+**Is it worth investing in a waste-control system in the current Argentine economic context?**
+
+---
+
+## Objective
+
+Analyze restaurant performance, probable losses, costs, and support the decision of implementing a system that enhances control over the raw materials used.
+
+It includes:
+
+- Identification of losses  
+- Economic impact  
+- Savings projection after optimization  
+- Business KPIs and metrics  
+- Final decision and recommendation  
+- Final dashboard  
+
+---
+
+## Project Structure
+
 ```
 analisis-gastronomico/
-|-- data/ # datos crudos, limpios y staging
-|-- scripts/ # scripts reutilizables y procesos aislados
-|-- notebooks/ # notebooks de EDA, wrangling, conversión y análisis
-|-- equivalencias/ # diccionarios y mapeos usados para unificar categorías
-|-- reporte-analítico.png # dashboard y reporte final
-|-- requirements.txt # dependencias del proyecto
-|-- README.md # este archivo
+|-- data/ # raw, clean, and staging datasets
+|-- scripts/ # reusable scripts and isolated processes
+|-- notebooks/ # EDA, wrangling, conversion, and analysis notebooks
+|-- equivalencias/ # dictionaries and mappings for category unification
+|-- reporte-analitico.png # dashboard and final report
+|-- requirements.txt # project dependencies
+|-- README.md # this file
 ```
 
 ---
 
-## Tecnologías utilizadas
+## Technologies Used
 
 - **Python** (Jupyter Notebooks)  
-- **Pandas** -> limpieza, feature engineering y transformación  
-- **Matplotlib** -> visualizaciones base  
-- **Power BI** -> dashboard de análisis  
+- **Pandas** — cleaning, feature engineering, and transformation  
+- **Matplotlib** — baseline visualizations  
+- **Power BI** — analysis dashboard  
 
 ---
 
-## Proceso General
+## General Process
 
-### 1. Exploración inicial y búsqueda de datasets
-El proyecto utiliza una combinación de **datasets simulados** y **precios reales** obtenidos de mayoristas y reportes del INDEC.
+### 1. Initial Exploration and Dataset Search
+
+The project uses a combination of **simulated datasets** and **real prices** obtained from wholesalers and INDEC reports.
 
 #### `Restaurant_Data.xlsx`
-Dataset base con ventas y recetas del restaurante ficticio.
 
-### Otras fuentes consultadas
-- Informe de precios del **INDEC**  
-- Reportes del sector gastronómico  
-- Fuentes complementarias para precios internacionales 
-- APIs para consulta de cotizaciones 
+Base dataset containing sales and recipes for the fictional restaurant.
 
-Para más información revisar: `data/README.md`
+### Other sources consulted
 
----
+- **INDEC** price reports  
+- Gastronomy sector reports  
+- Complementary sources for international prices  
+- Currency rate APIs  
 
-### 2. Data Wrangling 
-
-Tareas realizadas en esta etapa:
-- Eliminación de nulos  
-- Estandarización a `snake_case`  
-- Unificación de unidades (g -> kg)  
-- Conversión de moneda cuando corresponde  
-- Limpieza general del dataset para mantener la consistencia en las notebooks 
-
-> La traducción de columnas se mantuvo aislada para optimizar performance. Detalles en `scripts/README.md`.
+More information available in `data/README.md`.
 
 ---
 
-### 3. Equivalencias y paso a mercado argentino
+### 2. Data Wrangling
 
-El dataset del restaurante posee categorías propias, mientras que el INDEC maneja un esquema completamente distinto.  
-Para permitir análisis conjuntos, se generaron:
+Tasks performed:
 
-- Diccionarios de mapeo entre categorías  
-- Equivalencias entre subcategorías  
-- Unificación de criterios de clasificación  
+- Removal of null values  
+- Standardization to `snake_case`  
+- Unit unification (g → kg)  
+- Currency conversion when needed  
+- General cleanup to maintain dataset consistency across notebooks  
 
-Para más información revisar: `equivalencias/README.md`
+> Column translation was kept isolated for optimization and performance reasons. Details in `scripts/README.md`.
 
 ---
 
-### 4. Análisis final
+### 3. Category Mapping to the Argentine Market
 
-Esta sección incluye la creación de KPIs, elaboración del reporte final en Power BI, conclusiones finales y análisis gráfico.
+The restaurant dataset uses its own category scheme, while INDEC uses a completely different one.  
+To enable joint analysis, the following were created:
 
-## Instrucciones de uso
+- Mapping dictionaries  
+- Subcategory equivalences  
+- Unified classification criteria  
 
-### 1. Instalar dependencias
+More details available in `equivalencias/README.md`.
+
+---
+
+### 4. Final Analysis
+
+This section includes KPI creation, the Power BI dashboard, conclusions, and full graphic analysis.
+
+---
+
+## Usage Instructions
+
+### 1. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 2. Abrir los notebooks
-
-Los notebooks dentro de `/notebooks`, los cuales tienen el orden de ejecución de:
-
+### 2. Open the notebooks
+Execution order inside `/notebooks`
 ```
-eda.ipinb -> data_wrangling.ipynb -> paso_mercado.ipynb -> analisis_final.ipynb
+eda.ipynb -> data_wrangling.ipynb -> paso_mercado.ipynb -> analisis_final.ipynb
 ```
+> Important: After running the first notebook (EDA), if you prefer not to use the previously generated    `items_traducido.csv` file and want to regenerate it using traducir_df.py, be aware of potential translation errors due to limitations of automatic translation.
 
-> **Importante:** Luego de ejecutar el primer notebook (EDA), si no se desea utilizar el archivo `items_traducido.csv` generado previamente y se prefiere crear uno nuevo ejecutando `traducir_df.py`, es necesario tener especial cuidado con posibles errores de traducción.  
-> Esto puede ocurrir por limitaciones del traductor automático.
+## Main results
+- Maximum estimated savings percentage: 0.97% of monthly profit
+- Annual monetary savings: $53.08M out of $4.37B (ARS)
 
----
+> Results may vary depending on the original dataset, translation differences, or currency rates.
 
-## Resultados principales
-- Ahorro porcentual máximo estimado: **0.97%** sobre ganancia mensual
-- Ahorro monetario (en un año): **$53.08M** de **$4.37B** (en pesos)
+## Final Conclusion
 
-> Los valores que obtuve puede que no sean los mismos que usted obtenga, ya que puede ser alterado por el dataset original, traducción o cotización del dólar
+The comprehensive analysis of waste, wholesale prices, and cost structure demonstrates that optimizing stock leaks in Argentine restaurants has a marginal economic impact.\
+Even under a conservative scenario with full waste control, the potential improvement in profitability is below 1% of monthly profit.
 
----
+This increase is insufficient to justify implementing an additional management system, considering:
+- Software licensing and maintenance costs
+- Staff training 
+- Operational time needed to record stock movements
+- Increased administrative complexity
 
-## Conclusión Final del Proyecto
+Additionally, the analysis shows that the relative weight of food costs in Argentina is low compared to the overall business cost structure.\
+Expenses such as rent, salaries, utilities, and social charges represent a significantly larger portion of operating costs and therefore offer much greater optimization potential.
 
-El análisis integral de desperdicios, precios mayoristas y estructura de costos demuestra que la optimización de fugas de stock en restaurantes argentinos tiene un impacto económico marginal.
-Incluso aplicando un escenario conservador de control total de desperdicios, la mejora potencial en la rentabilidad es inferior al 1% de la ganancia mensual.
+## Executive Summary
 
-Este incremento resulta insuficiente para justificar la implementación de un sistema de gestión adicional, considerando:
-- Costos de licencias y mantenimiento de software
-- Capacitación del personal
-- Tiempo operativo destinado a registrar insumos y movimientos
-- Incremento en complejidad administrativa
+Investing in a system focused solely on reducing raw-material losses is not economically viable for the Argentine gastronomy sector under current conditions.
+Improvement efforts should instead focus on areas with greater financial impact, such as operational efficiency, renegotiation of fixed costs, and optimization of staff and space usage.
 
-Además, el análisis revela que el peso relativo del costo de alimentos en Argentina es muy bajo respecto a la estructura total del negocio. Factores como alquiler, salarios, servicios y cargas sociales representan un porcentaje significativamente más alto del gasto operativo, y por lo tanto ofrecen un potencial de optimización mucho mayor.
 
----
-
-## Conclusión ejecutiva
-
-Invertir en un sistema orientado exclusivamente a reducir pérdidas de materia prima no es económicamente conveniente para el sector gastronómico argentino bajo las condiciones actuales.
-Los esfuerzos de mejora deberían enfocarse en áreas de mayor impacto financiero, como eficiencia operativa, renegociación de costos fijos y optimización del uso del espacio y del personal.
-
-## Dashboard final
-
-![Reporte Final](reporte-final.png)
 
 

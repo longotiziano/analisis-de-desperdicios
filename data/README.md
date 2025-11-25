@@ -1,69 +1,76 @@
-# Data  
-Este directorio contiene los datasets utilizados en el proyecto, así como la documentación y fuentes que justifican los supuestos realizados.
+# Data
+This directory contains the datasets used in the project, along with documentation and sources that justify the assumptions made.
 
 ---
 
-### Directorios
-- **raw/**: Posee los datos crudos, sin ningún tipo de proceso.
-- **staging/**: Almacena los datos de manera previa en formato CSV luego de pasar por el EDA
-- **clean/**: Contiene los datos procesados, listos para análisis.
- 
+## Directories
 
-## Datasets empleados
+- **raw/**: Contains the raw, unprocessed data.  
+- **staging/**: Stores intermediate CSV files generated after the EDA stage.  
+- **clean/**: Contains fully processed data, ready for analysis.
 
-### **1. Índice de Precios al Consumidor (IPC - INDEC)**
-Usado para:
-- obtener valores de referencia sobre precios de alimentos en Argentina  
-- estimar tendencias inflacionarias relevantes al análisis de costos  
+---
 
-Fuente: https://www.indec.gob.ar/indec/web/Nivel4-Tema-3-5-31
+## Datasets Used
+
+### **1. Consumer Price Index (CPI - INDEC)**
+Used for:
+- obtaining reference prices for food items in Argentina  
+- estimating inflation trends relevant to cost analysis  
+
+Source:  
+https://www.indec.gob.ar/indec/web/Nivel4-Tema-3-5-31
 
 ---
 
 ### **2. Restaurant Cost and Sales Dataset (Kaggle)**  
-Dataset base utilizado para simular ventas y costos en un restaurante promedio.  
-Un `.xlsx` que contiene dos hojas (`Orders` e `Items`) con precios originalmente expresados en **USD**, lo cual se ajustó usando tipo de cambio actualizado.
+Base dataset used to simulate the sales and cost structure of an average restaurant.  
+An `.xlsx` file containing two sheets (`Orders` and `Items`) with original prices expressed in **USD**, later converted using updated exchange rates.
 
-**Hoja: Orders**
-- `Date`: día de la transacción  
-- `Time`: Horario de la transacción
-- `Order Number`: Número de orden  
-- `Item`: PK del item  
-- `Count`: Cantidad vendida
+**Sheet: Orders**
+- `Date`: Transaction date  
+- `Time`: Transaction time  
+- `Order Number`: Unique order ID  
+- `Item`: Item primary key  
+- `Count`: Units sold  
 
-**Hoja: Items**
-- `Item`: PK del item   
-- `Category`: Categoría del item (Desserts, Sides, Main Courses...)
-- `Sub Category`: Sub-categoría del item (Pasta, Vegan...)
-- `Item Name`: Nombre del item (Coffe, Beer, Burguers...) 
-- `Price`: Costo del item (en dólares)
-- `Cost`: Costo de producción
+**Sheet: Items**
+- `Item`: Item primary key  
+- `Category`: Culinary category (Desserts, Sides, Main Courses...)  
+- `Sub Category`: Subcategory (Pasta, Vegan...)  
+- `Item Name`: Item name (Coffee, Beer, Burgers...)  
+- `Price`: Item selling price (in USD)  
+- `Cost`: Production cost  
 
-Fuente: https://www.kaggle.com/datasets/virtualschool/restaurant-cost-and-sales-dataset
+Source:  
+https://www.kaggle.com/datasets/virtualschool/restaurant-cost-and-sales-dataset
 
 ---
 
 ### **3. DolarAPI**
-Usado para:
-- convertir precios de USD a ARS  
-- simular escenarios realistas en base al tipo de cambio vigente  
+Used for:
+- converting USD prices into ARS  
+- simulating realistic scenarios based on up-to-date exchange rates  
 
-API: https://dolarapi.com/v1/dolares/blue
-
----
-
-## Investigación complementaria
-
-- Declaraciones del CEO de PedidosYa sobre la gestión de stock en dark stores (Fuente: Forbes)
-- Estudio sobre desperdicio de alimentos en hoteles y restaurantes de Santa Fe (Fuente: Repositorio UNLP)
-- Informe del PNUMA (2021) sobre desperdicio global de alimentos  
-- Reportes sectoriales sobre merma promedio en restaurantes (Fuente: FUDO)  
+API:  
+https://dolarapi.com/v1/dolares/blue
 
 ---
 
-## Conclusiones metodológicas
-La literatura revisada muestra niveles de merma de entre **4% y 17%** dependiendo del país y el tipo de operación gastronómica.  
-Para este proyecto se adopta un valor de referencia del:
+## Complementary Research
 
-# **10% de desperdicio promedio**
-Este número se utiliza para estimar pérdidas económicas en el restaurante ficticio, y constituye un parámetro clave en el modelo analítico.
+- Statements from the CEO of PedidosYa on stock management in dark stores (Forbes)  
+- Study on food waste in hotels and restaurants of Santa Fe (UNLP Repository)  
+- UNEP Food Waste Index Report (2021)  
+- Sector reports on average restaurant waste (FUDO)  
+
+---
+
+## Methodological Conclusions
+The reviewed literature shows waste levels ranging from **4% to 17%**, depending on the country and the type of gastronomic operation.
+
+For this project, a reference value of:
+
+# **10% average food waste**
+
+This number is used to estimate economic losses in the fictional restaurant and serves as a key parameter in the analytical model.
